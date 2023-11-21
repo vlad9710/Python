@@ -30,11 +30,9 @@ def calc():
             print("\nРезультат операции : " + str(num_1 * num_2))
         case "/":
             try:
-                result = num_1 / num_2
-                print("\nРезультат операции : " + str(round(result, 3)))
+                print("\nРезультат операции : " + str(round(num_1 / num_2, 3)))
             except ZeroDivisionError:
                 print("\nНа ноль делить нельзя")
-                calc()
         case "+":
             print("\nРезультат операции : " + str(num_1 + num_2))
         case "-":
