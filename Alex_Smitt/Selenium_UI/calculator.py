@@ -27,8 +27,7 @@ def calc():
 
     match op:
         case "*":
-            result = num_1 * num_2
-            print(int(result))
+            print("\nРезультат операции : " + str(num_1 * num_2))
         case "/":
             try:
                 result = num_1 / num_2
@@ -37,11 +36,9 @@ def calc():
                 print("\nНа ноль делить нельзя")
                 calc()
         case "+":
-            result = num_1 + num_2
-            print(int(result))
+            print("\nРезультат операции : " + str(num_1 + num_2))
         case "-":
-            result = num_1 - num_2
-            print(int(result))
+            print("\nРезультат операции : " + str(num_1 - num_2))
     retry()
 
 
@@ -55,5 +52,6 @@ def retry():
             exit()
         case _:
             retry()
+
 
 calc()
