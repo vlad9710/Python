@@ -40,7 +40,7 @@ driver.find_element(By.XPATH, "//*[@id='postal-code']").send_keys("123456")
 driver.find_element(By.XPATH, "//*[@id='continue']").click()
 
 # Производим проверку суммы заказа
-price_2 = driver.find_element(By.XPATH, "/html/body/div/div/div/div[2]/div/div[2]/div[6]").text.replace('Item total: $', '')  # Записываем сумму заказа, обрезая первые 12 символов
+price_2 = driver.find_element(By.XPATH, "//div[@class='summary_subtotal_label']").text.replace('Item total: $', '')  # Записываем сумму заказа, обрезая первые 12 символов
 
 if math.isclose(float(price_1), float(price_2)) != True:
     print("Сумма заказа не совпадает с суммой в корзине")
