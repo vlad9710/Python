@@ -22,9 +22,9 @@ driver.find_element(By.XPATH, "//input[@id='user-name']").send_keys(standart_use
 driver.find_element(By.XPATH, "//input[@id='password']").send_keys(password)
 driver.find_element(By.XPATH, "//input[@id='login-button']").click()
 
-
+# Добавляем товар в корзину
 driver.find_element(By.XPATH, f"//div[@class='inventory_list']/div[{test3.product}]//button[@class='btn btn_primary btn_small btn_inventory ']").click()
-price_1 = driver.find_element(By.XPATH, f"//div[@class='inventory_list']/div[{test3.product}]//div[@class='inventory_item_price']").text[1:]  # Записываем цену первой карточки и обрезаем первый символ в виде доллара
+price_1 = driver.find_element(By.XPATH, f"//div[@class='inventory_list']/div[{test3.product}]//div[@class='inventory_item_price']").text.replace('$', '')  # Записываем цену первой карточки и обрезаем первый символ в виде доллара
 
 # Осуществляем переход в корзину
 driver.find_element(By.XPATH, "//a[@class='shopping_cart_link']").click()
@@ -40,7 +40,7 @@ driver.find_element(By.XPATH, "//*[@id='postal-code']").send_keys("123456")
 driver.find_element(By.XPATH, "//*[@id='continue']").click()
 
 # Производим проверку суммы заказа
-price_2 = driver.find_element(By.XPATH, "/html/body/div/div/div/div[2]/div/div[2]/div[6]").text[13:]  # Записываем сумму заказа, обрезая первые 12 символов
+price_2 = driver.find_element(By.XPATH, "/html/body/div/div/div/div[2]/div/div[2]/div[6]").text.replace('Item total: $', '')  # Записываем сумму заказа, обрезая первые 12 символов
 
 if math.isclose(float(price_1), float(price_2)) != True:
     print("Сумма заказа не совпадает с суммой в корзине")
