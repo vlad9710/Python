@@ -27,3 +27,7 @@ class Base:
         get_url = self.driver.current_url
         assert get_url == result
         print('Good URL')
+
+    # Метод проивзодящий скроллинг страницы
+    def scroll_page(self, x, y):
+        self.driver.execute_script(f"window.scrollTo({x}, {y})")

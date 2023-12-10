@@ -6,7 +6,7 @@ from base.base_class import Base
 
 
 class Login_page(Base):
-    url = "https://elex.ru/"
+    url = "https://www.citilink.ru/"
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -16,5 +16,5 @@ class Login_page(Base):
     # Getters
     # Actions
     def autorization(self):
-        self.driver.get(self.url)
         self.driver.maximize_window()
+        self.driver.get(self.url)
