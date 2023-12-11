@@ -1,3 +1,5 @@
+from time import sleep
+
 from selenium import webdriver
 from selenium.common import NoSuchElementException
 from selenium.webdriver.chrome.options import Options
@@ -15,26 +17,21 @@ def test_select_product():
     o = Options()
     o.add_experimental_option("detach", True)
     o.add_experimental_option('excludeSwitches', ['enable-logging'])
-
     driver = webdriver.Chrome(options=o)
 
+    # Создание переменных
     login = Login_page(driver)
-    login.autorization()
-
-    ssl = Main_page(driver)
-    ssl.select_search_line("Видеокарта")
-
-
-
+    main = Main_page(driver)
     sp = Search_page(driver)
-    sp.assert_result('Видеокарта MSI NVIDIA  GeForce RTX 3060 RTX 3060 VENTUS 2X 12G OC')
-    sp.move_slider_2(-200, 0)
-
     bc = Base(driver)
-    bc.scroll_page(0, 1000)
 
-    sp.activate_checkbox("//div[@data-meta-value='4,5 и выше']")
+    login.autorization()  # Открытие сайта
+    main.select_search_line("Видеокарта")  # Ввод данных в поисковик
+    sp.activate_detailed_directory_mode()  # Активация детального режима
+    sp.move_slider_2(-200, 0)  # Настройка фильтров максимальной цены
+    bc.scroll_page(0, 1000)  # Скроллинг страницы вниз
+    sp.activate_checkbox("//div[@data-meta-value='4,5 и выше']")  # Активация фильтров
     sp.activate_checkbox("//div[@data-meta-value='POWERCOLOR']")
+    bc.scroll_page(0, -1000)  # Скроллинг страницы вверх
 
-    bc.scroll_page(0, -1000)
-    sp.assert_result("Видеокарта PowerColor AMD  Radeon RX 6400 AXRX 6400 4GBD6-DH")
+    sp.assert_result(1)  # Сравнение результатов

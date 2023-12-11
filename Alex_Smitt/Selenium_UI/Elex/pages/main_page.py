@@ -15,20 +15,14 @@ class Main_page(Base):
     search_line = "//input[@type='search']"
 
     # Getters
-    def get_search_line(self):
+    def get_search_line(self):  # Найти поисковую строку
         return WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, self.search_line)))
 
-    def get_elem_by_locator(self, locator):
-        return WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, self.search_line)))
     # Actions
-    def input_search_line(self, user_request):
+    def input_search_line(self, user_request):  # Ввести значение в поисковую строку
         self.get_search_line().send_keys(user_request)
 
     # Methods
-    def select_search_line(self, user_text):
-        self.get_current_url()
+    def select_search_line(self, user_text):  # Произвести поиск по введенному значению в поисковой строке
         self.input_search_line(user_text)
         self.get_search_line().send_keys(Keys.ENTER)
-
-    def assert_result(self, result, locator):
-        loc = self.get_elem_by_locator(locator)

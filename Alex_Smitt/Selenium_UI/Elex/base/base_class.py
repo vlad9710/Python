@@ -8,13 +8,11 @@ class Base:
     # Метод определяющий URL страницы
     def get_current_url(self):
         get_url = self.driver.current_url
-        print("Current URL: ", get_url)
 
     # Метод определяющий заголовок страницы
     def get_page_title(self, word, result):
         value_word = word.text
         assert value_word == result
-        print('Good walue word')
 
     # Метод сохраняющий скриншот
     def get_screenshot(self):
@@ -26,7 +24,6 @@ class Base:
     def assert_url(self, result):
         get_url = self.driver.current_url
         assert get_url == result
-        print('Good URL')
 
     # Метод проивзодящий скроллинг страницы
     def scroll_page(self, x, y):
