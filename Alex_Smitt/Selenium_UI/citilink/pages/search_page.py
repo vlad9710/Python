@@ -28,6 +28,10 @@ class Search_page(Base):
     def get_checkbox(self, checkbox):  # Найти чекбокс
         return WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, checkbox)))
 
+    def get_product_from_list(self, number):  # Найти элемент из списка
+        product_from_list = f"//div[@class='edhylph0 app-catalog-1ljlt6q e3tyxgd0']/a[{number}]//span[@class='e1ys5m360 e106ikdt0 app-catalog-1bu1ack e1gjr6xo0']"
+        return WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, product_from_list)))
+
     # Actions
     def activate_detailed_directory_mode(self):  # Активировать кнопку переключения каталога в детальном режиме
         self.get_detailed_directory_mode().click()
@@ -42,7 +46,10 @@ class Search_page(Base):
         time.sleep(1)  # Пауза на 1 секунду
         self.actions.move_by_offset(x, y).release().perform()
 
-    def assert_result(self, count):  # Проверить количество найденного товара
+    def check_list_count(self, count):  # Проверить количество найденного товара
         elem = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//div[@class='ehanbgo0 app-catalog-127ajd9 e1loosed0']")))
         get_count = elem.get_attribute('data-meta-row-count')
         assert str(count) == str(get_count)
+
+    def choose_product_from_list(self, number):  # Перейти на страницу карточки товара
+        self.get_product_from_list(number).click()

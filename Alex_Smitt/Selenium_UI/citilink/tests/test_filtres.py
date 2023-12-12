@@ -34,4 +34,4 @@ def test_select_product():
     sp.activate_checkbox("//div[@data-meta-value='POWERCOLOR']")
     bc.scroll_page(0, -1000)  # Скроллинг страницы вверх
 
-    sp.assert_result(1)  # Сравнение результатов
+    sp.check_list_count(1)  # Сравнение результатов

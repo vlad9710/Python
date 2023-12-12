@@ -13,6 +13,7 @@ class Main_page(Base):
 
     # Locators
     search_line = "//input[@type='search']"
+    first_popular_elem = "//a[@data-meta-category='cardId-1']"
 
     # Getters
     def get_search_line(self):  # Найти поисковую строку
