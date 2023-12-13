@@ -1,4 +1,7 @@
 import datetime
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
 
 
 class Base:
@@ -28,3 +31,7 @@ class Base:
     # Метод проивзодящий скроллинг страницы
     def scroll_page(self, x, y):
         self.driver.execute_script(f"window.scrollTo({x}, {y})")
+
+    # Метод производящий клик по элементу
+    def click_element(self, locator):
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, locator))).click()

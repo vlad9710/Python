@@ -37,13 +37,13 @@ class Order_registration(Base):
 
     # Actions
     def input_first_name(self, name):  # Ввести значение в поле ввода имени
-        self.get_first_name().input(name)
+        self.get_first_name().send_keys(name)
 
     def input_last_name(self, surname):  # Ввести значение в поле ввода фамилии
-        self.get_last_name().input(surname)
+        self.get_last_name().send_keys(surname)
 
     def input_telephone_number(self, tel_number):  # Ввести значение в поле ввода номера телефона
-        self.get_telephone_number().input(tel_number)
+        self.get_telephone_number().send_keys(tel_number)
 
     def click_choose_point(self):  # Выбрать пункт самовывоза
         self.get_choose_point.click()
