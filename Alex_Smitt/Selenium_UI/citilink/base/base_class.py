@@ -34,4 +34,13 @@ class Base:
 
     # Метод производящий клик по элементу
     def click_element(self, locator):
-        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, locator))).click()
+        elem = WebDriverWait(self.driver, 15).until(EC.element_to_be_clickable((By.XPATH, locator)))
+        return elem.click()
+
+    def get_text(self, locator):
+        elem = WebDriverWait(self.driver, 15).until(EC.element_to_be_clickable((By.XPATH, locator)))
+        return elem.text
+
+    def input_value(self, locator, value):
+        elem = WebDriverWait(self.driver, 15).until(EC.element_to_be_clickable((By.XPATH, locator)))
+        elem.send_keys(value)

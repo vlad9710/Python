@@ -1,37 +1,37 @@
-from time import sleep
-
-from selenium import webdriver
-from selenium.common import NoSuchElementException
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-
 from pages.authorization import Login_page
 from pages.main_page import Main_page
 from pages.search_page import Search_page
 from base.base_class import Base
 
 
-def test_select_product():
-    o = Options()
-    o.add_experimental_option("detach", True)
-    o.add_experimental_option('excludeSwitches', ['enable-logging'])
-    driver = webdriver.Chrome(options=o)
-
+def test_filtres(driver):
     # Создание переменных
     login = Login_page(driver)
     main = Main_page(driver)
-    sp = Search_page(driver)
-    bc = Base(driver)
+    search_page = Search_page(driver)
+    base = Base(driver)
 
-    login.autorization()  # Открытие сайта
-    main.select_search_line("Видеокарта")  # Ввод данных в поисковик
-    sp.activate_detailed_directory_mode()  # Активация детального режима
-    sp.move_slider_2(-200, 0)  # Настройка фильтров максимальной цены
-    bc.scroll_page(0, 1000)  # Скроллинг страницы вниз
-    sp.activate_checkbox("//div[@data-meta-value='4,5 и выше']")  # Активация фильтров
-    sp.activate_checkbox("//div[@data-meta-value='POWERCOLOR']")
-    bc.scroll_page(0, -1000)  # Скроллинг страницы вверх
+    # Открытие сайта и вход в систему
+    login.autorization()
 
-    sp.check_list_count(1)  # Сравнение результатов
+    # Ввод данных в поисковую строку
+    main.select_search_line("Видеокарта")
+
+    # Активация детального режима
+    base.click_element(".//*[@data-meta-name='ViewSwitcherVariant__list']/..")
+
+    # Настройка фильтров максимальной цены
+    search_page.move_slider_2(-200, 0)
+
+    # Скроллинг страницы вниз
+    base.scroll_page(0, 1000)
+
+    # Активация фильтров
+    base.click_element("//div[@data-meta-value='4,5 и выше']")
+    base.click_element("//div[@data-meta-value='POWERCOLOR']")
+
+    # Скроллинг страницы вверх
+    base.scroll_page(0, -1000)
+
+    # Сравнение результатов
+    search_page.check_list_count(1)

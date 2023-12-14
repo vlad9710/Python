@@ -5,6 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 from base.base_class import Base
 
+
 class Product_card(Base):
     def __init__(self, driver):
         super().__init__(driver)
@@ -23,6 +24,4 @@ class Product_card(Base):
     def get_product_price(self):  # Получить цену продукта
         price = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, self.product_price)))
         return price.text.replace('₽', '').replace(' ', '')
-
-
     # Actions
