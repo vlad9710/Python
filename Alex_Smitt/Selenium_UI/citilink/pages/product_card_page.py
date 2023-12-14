@@ -17,11 +17,11 @@ class Product_card(Base):
     product_price = "//span[@class='e1j9birj0 e106ikdt0 app-catalog-1f8xctp e1gjr6xo0']"
 
     # Getters
-    def get_product_title(self):  # Получить название продукта
+    def get_product_title(self):
         title = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, self.product_title)))
         return title.text
 
-    def get_product_price(self):  # Получить цену продукта
+    def get_product_price(self):
         price = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, self.product_price)))
         return price.text.replace('₽', '').replace(' ', '')
     # Actions

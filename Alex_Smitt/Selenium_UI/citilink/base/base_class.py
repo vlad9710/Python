@@ -11,6 +11,7 @@ class Base:
     # Метод определяющий URL страницы
     def get_current_url(self):
         get_url = self.driver.current_url
+        return get_url
 
     # Метод определяющий заголовок страницы
     def get_page_title(self, word, result):
@@ -37,10 +38,12 @@ class Base:
         elem = WebDriverWait(self.driver, 15).until(EC.element_to_be_clickable((By.XPATH, locator)))
         return elem.click()
 
+    # Метод получения текста элемента
     def get_text(self, locator):
         elem = WebDriverWait(self.driver, 15).until(EC.element_to_be_clickable((By.XPATH, locator)))
         return elem.text
 
+    # Метод ввода значения в элемент
     def input_value(self, locator, value):
         elem = WebDriverWait(self.driver, 15).until(EC.element_to_be_clickable((By.XPATH, locator)))
         elem.send_keys(value)

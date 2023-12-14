@@ -15,15 +15,12 @@ class Basket_page(Base):
     # Locators
     # Getters
     # Actions
+
     # Methods
     def assert_price(self, locator, price):
         price_1 = WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable((By.XPATH, locator)))
-        print(price_1.text.replace('₽', '').replace(' ', ''))
-        print(price + 'qqq')
         assert (price_1.text.replace('₽', '').replace(' ', '')) == price
 
     def assert_title(self, locator, title):
         title_1 = WebDriverWait(self.driver, 15).until(EC.element_to_be_clickable((By.XPATH, locator)))
-        print(title_1.text)
-        print(title)
         assert title_1.text == title
